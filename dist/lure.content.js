@@ -391,7 +391,7 @@ Lure.Plugin.Content = {
                         Lure._DialogCount--;
                         if ($this.DialogWrapper)
                             $this.DialogWrapper.remove();
-                        if (DialogBlur  /**&& Lure._DialogCount < 1**/) //TODO to solve bug
+                        if (DialogBlur  && Lure._DialogCount < 1)
                             Lure.Select(DialogBlur).classList.remove('lure-blur');
                     }
 

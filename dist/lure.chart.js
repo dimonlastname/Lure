@@ -10,12 +10,10 @@ Lure.Plugin.Chart = {
                     Rotation: 'auto',
                     Data: []
                 },
-                Series = [
-                    {Data: [], Type: '', OwnAxis: false, Color: '#eee'},
-                    {Data: [], Type: '', OwnAxis: [0, 100], Color: '#eee'},
-                ],
+                Grid = {},
+                Series = [],
                 Tooltip = {
-                    Template: 'Name: {{Name}}<br>Value: {{Value}}',
+                    Template: null,
                 },
                 AxisY = {
                     Scale: ['auto', 'auto', 'auto'],
@@ -25,83 +23,89 @@ Lure.Plugin.Chart = {
                 SeriesOptions = {},
             }={},
         ){
+           // let pp = new Lure.Diagnostics.Perf(false);
             /// <DEFAULTS>
             //const Colors = ['red', 'green', 'blue'];
-            const ColorsDefault = ['red', 'green', 'cornflowerblue', 'purple', 'palevioletred', 'orange'];
-            //const DefaultPoint = {
-            //    Visible: true,
-            //    Radius: 4
-            //};
+            const ColorsDefault = ['red', 'green', 'cornflowerblue', 'purple', 'palevioletred', 'orange', 'tomato', 'darkblue'];
+            const TemplateDefault = {
+                Line: 'Name: {{Name}}<br>Value: {{Value}}',
+                Pie: 'Name: {{Name}}<br>Value: {{Value}}'
+            };
             /// </DEFAULTS>
             ///
+            Lure.Chart.Count++;
             let chart = this;
             this.Content = Lure.Select(Target);
             this.Content.classList.add('mt-chart'); // mt
             this.Content.style.position = 'relative';
 
-            this.isGraph = true;//(Series.filter(x=>x.Type?x.Type.toLowerCase():x.Type === 'line' || x.Type?x.Type.toLowerCase():x.Type === 'bar')).length === Series.length;
+            this.isGraph = true;
 
+
+            let Prepared = [];
             let Buffer = {
                 Legend: '',
+
                 AxisX: '',
                 AxisY: '',
                 Grid: '',
                 Svg: '',
-
-
 
                 Height: 0,
                 Width: 0,
                 Abscissa: null,
                 SeriesPoints: [],
 
+                SeriesCount:{
+                    Line: 0,
+                    Bar: 0,
+                    Pie: 0,
+                    Ring: 0,
+                },
+                SeriesBar: 0,
+
                 ParametersAxisX: null,
-
             };
-
             this._Series = Series;
-            //define Series
-            this.__InitSeries = function (){
-                let Se = [];
-
-                for (let i = 0; i < this._Series.length; i++){
-                    let ep = {};
-                    ep.Name    = this._Series[i].Name ? this._Series[i].Name                : 'Unnamed';
-                    ep.Data    = this._Series[i].Data;
-                    ep.OwnAxis = this._Series[i].OwnAxis;
-                    ep.Title   = this._Series[i].Title? this._Series[i].Title               : ep.Name;
-                    ep.Type    = this._Series[i].Type ? this._Series[i].Type.toLowerCase()  : (Type?Type.toLowerCase():'line');
-                    ep.Color   = this._Series[i].Color? this._Series[i].Color: ColorsDefault[i]?ColorsDefault[i]:'#000';
-                    ep.Width   = this._Series[i].Width? this._Series[i].Width               : 2;
-
-                    ep.Point   = Series[i].Point;
-                    ep.Point   = Lure.Chart.GetSeriePointOptions(ep);
-
-                    Buffer.Legend += Lure.Chart.MakeLegend(ep, i);
-                    Se.push(ep)
-                }
-                return Se;
-            }.bind(this);
 
             this.Options = {
-                //Type: Type? Type.toLowerCase(): 'line',
+                Type: Type? Type.toLowerCase(): 'line',
                 Title: Title? Title: '',
+                Legend: {
+                    Visible: true,
+                },
                 Labels: {
                     Visible: (typeof Labels.Visible === 'undefined' || Labels.Visible),
                     Rotation: Labels.Rotation? Labels.Rotation: 'auto',
                     Data: Labels.Data? Labels.Data: [],
+                    Font: {
+                        Family: 'sans-serif',
+                        Size: '0.8rem',
+                    }
                 },
-                Series: this.__InitSeries(),
+                Grid: {
+                    Visible: (typeof Grid.Visible === 'undefined' || Grid.Visible),
+                },
+                Series: null,
                 SeriesOptions: {
                     BarStack: false,
-                    BarGradient: true
+                    BarGradient: true,
+
+                    PieStack: false,
+                    PieType: 'pie'
                 },
                 AxisY: {
+                    Font: {
+                        Family: 'sans-serif',
+                        Size: '0.8rem',
+                    },
                     Scale: AxisY.Scale? ([Lure.isNumeric(AxisY.Scale[0])? AxisY.Scale[0]:'auto', Lure.isNumeric(AxisY.Scale[1])? AxisY.Scale[1]:'auto', Lure.isNumeric(AxisY.Scale[2])? AxisY.Scale[2]:'auto']):['auto', 'auto', 'auto'],
-                    Visible: (typeof AxisY.Visible === 'undefined' || AxisY.Visible)
+                    Visible: (typeof AxisY.Visible === 'undefined' || AxisY.Visible),
+
                 },
+                Padding: 0,
                 Tooltip: {
-                    Template: Tooltip.Template?Tooltip.Template : 'Name: {{Name}}<br>Value: {{Value}}'
+                    Template: null, //Tooltip.Template?Tooltip.Template : TemplateDefault.Line
                 }
             };
             this.Block = (function () {
@@ -166,32 +170,43 @@ Lure.Plugin.Chart = {
                     },
                 }
             }.bind(this))();
+            /*********/
+            const Builder = {
+                Legend(){
 
-            /********************************************************************************/
-            const Builders = {
-                /**
-                 *
-                 * @param Serie
-                 * @param i
-                 * @returns {string}
-                 * @constructor
-                 */
-                MakeLegend(Serie, i){
+                },
+                AxisX: function(){
+                    if (!chart.Options.Labels.Visible)
+                    {
+                        this.Block.AxisX = '';
+                        return;
+                    }
+                    let labels = chart.Options.Labels.Data;
+                    //const style = `transform: rotate(${Buffer.AxisXParams.Angle}deg); margin-top: ${Buffer.AxisXParams.MarginTop}px; width: ${Buffer.AxisXParams.Width}px; margin-left: ${Buffer.AxisXParams.MarginLeft}px;`;
+                    const style = `transform: translate(${Buffer.AxisXParams.MarginLeft}px) rotate(${Buffer.AxisXParams.Angle}deg); margin-top: ${Buffer.AxisXParams.MarginTop}px ; width: ${Buffer.AxisXParams.Width}px;`;
+                    let a = '';
+                    for (let i = 0 ; i < labels.length; i++){
+                        a += `<div class="mt-chart-label mt-chart-label__x" style="font-family: ${chart.Options.Labels.Font.Family}; font-size: ${chart.Options.Labels.Font.Size}"><span style="${style}">${labels[i]}</span></div>`
+                    }
+                    //console.log(`AxisX forecastHeight: ${Math.round(h/4+ (Math.sqrt(Math.pow(wFact, 2) - Math.pow(w, 2))))}`);
+                    Buffer.AxisX = a;
+                    this.Block.AxisX = a;
+                    this.Block.AxisX.style.borderTop = '1px #111 solid';
+                }.bind(this),
+                AxisY: function () {
+                    !this.Options.Labels.Visible
+                    return '';
+
+                }.bind(this),
+
+
+                Make3Legend(Serie, i){
                     return `<div class="mt-chart-legend__item row">
                           <input class="mt-legend-checkbox" type="checkbox" checked="checked" id="legcheck${Serie.Name}${i}">
                           <div class="mt-legend-icon" style="background-color: ${Serie.Color}"></div>
                           <label class="mt-legend-label" for="legcheck${Serie.Name}${i}">${Serie.Name}</label>
                         </div>`;
                 },
-                /**
-                 *
-                 * @param scale
-                 * @param i
-                 * @param name
-                 * @param color
-                 * @returns {*}
-                 * @constructor
-                 */
                 MakeAxisY(){
                     /*if (!scale)
                      return '';
@@ -209,6 +224,7 @@ Lure.Plugin.Chart = {
                         if (chart._ScaleY.Scales.length < 2)
                             return '';
                     }
+                    let AxisYStyle = `font-family: ${chart.Options.Labels.Font.Family}; font-size: ${chart.Options.Labels.Font.Size};`;
                     let accum = '';
                     for (i; i <chart._ScaleY.Scales.length; i++){
                         let index = chart._ScaleY.Dict.indexOf(i);//.filter(x=>x===i && x !==0)[0];
@@ -221,7 +237,9 @@ Lure.Plugin.Chart = {
                         for (let j = 0; j< scale.length; j++){
                             a += `<div class="mt-chart-label mt-chart-label__y"><span>${scale[j]}</span></div>`;
                         }
-                        accum += `<div class="mt-chart-axis__y row" ${(i>0)? ('style="color: '+chart.Options.Series[index].Color+'; font-weight: bold;"'):''} data-line="${i}">${caption}<div class="mt-chart-labels col">${a}</div></div>`;
+                        if (i>0)
+                            AxisYStyle += ` color: ${chart.Options.Series[index].Color}; font-weight: bold;`;
+                        accum += `<div class="mt-chart-axis__y row" style="${AxisYStyle}" data-line="${i}">${caption}<div class="mt-chart-labels col">${a}</div></div>`;
 
                     }
                     return accum;
@@ -231,16 +249,19 @@ Lure.Plugin.Chart = {
                         return '';
                     let labels = chart.Options.Labels.Data;
 
-                    const style = `transform: rotate(${Buffer.ParametersAxisX.Angle}deg); margin-top: ${Buffer.ParametersAxisX.MarginTop}px; width: ${Buffer.ParametersAxisX.Width}px; margin-left: ${Buffer.ParametersAxisX.MarginLeft}px;`;
+                    //const style = `transform: rotate(${Buffer.AxisXParams.Angle}deg); margin-top: ${Buffer.AxisXParams.MarginTop}px; width: ${Buffer.AxisXParams.Width}px; margin-left: ${Buffer.AxisXParams.MarginLeft}px;`;
+                    const style = `transform: translate(${Buffer.AxisXParams.MarginLeft}px) rotate(${Buffer.AxisXParams.Angle}deg); margin-top: ${Buffer.AxisXParams.MarginTop}px ; width: ${Buffer.AxisXParams.Width}px;`;
                     let a = '';
                     for (let i = 0 ; i < labels.length; i++){
-                        a += `<div class="mt-chart-label mt-chart-label__x"><span style="${style}">${labels[i]}</span></div>`
+                        a += `<div class="mt-chart-label mt-chart-label__x" style="font-family: ${chart.Options.Labels.Font.Family}; font-size: ${chart.Options.Labels.Font.Size}"><span style="${style}">${labels[i]}</span></div>`
                     }
                     //console.log(`AxisX forecastHeight: ${Math.round(h/4+ (Math.sqrt(Math.pow(wFact, 2) - Math.pow(w, 2))))}`);
                     return a;
                 },
                 MakeGrid(a,b){
-                    return Lure.Chart.GetGrid(a,b);
+                    if (!chart.Options.Grid.Visible)
+                        return '';
+                    return Lure.Chart.GetGrid(chart.Options.Labels.Data.length, chart._ScaleY.Scales[0].length-1, chart.Options.Padding);
                 },
                 MakeGraph(serie, i){
                     let index = chart._ScaleY.Dict[i];
@@ -251,13 +272,18 @@ Lure.Plugin.Chart = {
                     let points = Lure.Chart.GetPoints(DataAbscissa, DataOrdinata);
                     return Lure.Chart.GetPath(points, chart.Options.Series[i].Type, i, chart.Options.Series[i].Color, chart.Options.Series[i].Width);
                 },
-                CalcAxisX(){
+                CalcAxi6sX(){
                     let c = Lure.CreateElementFromString(`<div class="mt-chart-label mt-chart-label__x"><span>${chart.Options.Labels.Data[0]}</span></div>`);
-                    let size = Lure.GetInlineSize(c, getComputedStyle(c.querySelector('span')).fontSize);
+                    //let pp = performance.now();
+                    let size = Lure.GetInlineSize(c, getComputedStyle(Lure.Select('span')).fontSize);
+
                     let w = chart.Width/chart.Options.Labels.Data.length;
+                    chart.Options.Padding = w/2;
+                    chart.Block.AxisX.style.paddingLeft = w/2+'px';
                     let h = size.height;
                     let wFact = size.width;
                     let angle;
+
                     if (chart.Options.Labels.Rotation !== 'auto'){
                         angle = parseFloat(chart.Options.Labels.Rotation);
                     }
@@ -269,6 +295,7 @@ Lure.Plugin.Chart = {
                             cos = 1;
                         angle = (-90*(1-cos));
                     }
+                    //Lure.Perf(pp, '--calcx--');
                     return {
                         Height: Math.round(h/4+ (Math.sqrt(Math.pow(wFact, 2) - Math.pow(w, 2)))),
                         Width: wFact,
@@ -279,62 +306,253 @@ Lure.Plugin.Chart = {
 
                 }
             };
+
+            const Init = {
+                Tooltip: function () {
+                    if (Tooltip.Template)
+                    {
+                        this.Options.Tooltip.Template = Tooltip.Template;
+                        return;
+                    }
+                    if (this.Options.Type === 'line' || this.Options.Type === 'bar'){
+                        this.Options.Tooltip.Template = TemplateDefault.Line;
+                        return;
+                    }
+                    if (this.Options.Type === 'pie' || this.Options.Type === 'ring'){
+                        this.Options.Tooltip.Template = TemplateDefault.Pie;
+                        return;
+                    }
+
+                    //Tooltip.Template?Tooltip.Template : TemplateDefault.Line
+                }.bind(this),
+                Series: function(){
+                    let Se = [];
+                    if (this.Options.Series !== null){
+
+                        return;
+                    }
+                    for (let i = 0; i < this._Series.length; i++){
+                        let ep = {};
+                        ep.Name    = this._Series[i].Name ? this._Series[i].Name                : 'Unnamed';
+                        ep.Title   = this._Series[i].Title? this._Series[i].Title               : ep.Name;
+                        ep.Color   = this._Series[i].Color? this._Series[i].Color: ColorsDefault[i]?ColorsDefault[i]:'#000';
+                        ep.Width   = this._Series[i].Width? this._Series[i].Width               : 2;
+
+                        ep.Data    = this._Series[i].Data;
+
+                        ep.Type    = this._Series[i].Type ? this._Series[i].Type.toLowerCase()  : (Type?Type.toLowerCase():'line');
+                        //debugger;
+                        if (ep.Type === 'pie' || ep.Type === 'ring'){
+                            ep.Colors = this._Series[i].Colors? this._Series[i].Colors: ColorsDefault;
+                            ep.Width   = this._Series[i].Width? this._Series[i].Width               : 30;
+                            ep.Labels  = this._Series[i].Labels? this._Series[i].Labels: (this.Options.Labels.Data?this.Options.Labels.Data: false);
+
+                        }
+
+
+                        ep.Line    = i;
+                        ep.isVisible = (typeof this._Series[i].Visible === 'undefined' || this._Series[i].Visible); //true by default
+                        ep.OwnAxis = this._Series[i].OwnAxis;
+                        //ep.OwnAxis = Lure.Chart.CheckOwnAxis(ep);
+
+
+                        ep.Point   = this._Series[i].Point;
+                        ep.Point   = Lure.Chart.GetSeriePointOptions(ep);
+
+                        Buffer.Legend += Lure.Chart.MakeLegend(ep, i);
+                        Buffer.SeriesCount[ep.Type.capitalize()]++;
+                        Se.push(ep);
+                    }
+                    this.Options.Series = Se;
+                }.bind(this),
+                AxisY: function () {
+                    if (this.Width === LastRender.Width)
+                        return;
+                    let count = this.Options.AxisY.Visible? 1:0;
+                    let len = 0;
+                    let width = 0;
+                    for (let i = 0; i < this.Options.Series.length; i++){
+                        //check special Scales
+                        if (this.Options.Series[i].isVisible && this.Options.Series[i].OwnAxis){
+                            let len = 0;
+                            for (let j = 0; j < this.Options.Series[i].Data.length; j++){
+                                let w = Lure.GetTextWidth(this.Options.Series[i].Data[j], this.Options.AxisY.Font.Family, this.Options.AxisY.Font.Size);
+                                if (w > len)
+                                    len = this.Options.Series[i].Data[j];
+                            }
+                            let lenmax = Lure.GetTextWidth(this.Options.Series[i].OwnAxis[1], this.Options.AxisY.Font.Family, this.Options.AxisY.Font.Size);
+                            if (lenmax > len)
+                                len = lenmax;
+                            //debugger;
+                            //width += Lure.GetTextWidth('i'.repeat(len), this.Options.AxisY.Font.Family, this.Options.AxisY.Font.Size);
+                            width += len + 8;  //8px = (7px) :before.width  + (1px) border
+                            let wCapti = Lure.GetTextWidth(this.Options.Series[i].Title, this.Options.AxisY.Font.Family, this.Options.AxisY.Font.Size);
+                            width += wCapti > 30 ? 30: wCapti;
+                        }
+                        //check default scale
+                        else if (this.Options.Series[i].isVisible && !Array.isArray(this.Options.Series[i].OwnAxis)){
+                            for (let j = 0; j < this.Options.Series[i].Data.length; j++){
+                                let w = Lure.GetTextWidth(this.Options.Series[i].Data[j], this.Options.AxisY.Font.Family, this.Options.AxisY.Font.Size);
+                                if (w > len)
+                                    len = this.Options.Series[i].Data[j];
+                            }
+                        }
+                    }
+                    width += len + 10 +7;
+                    Buffer.AxisYWidth = width;
+                   // console.log('->Init.AxisY:',width);
+                }.bind(this),
+                AxisX: function () {
+                    if (this.Width === LastRender.Width)
+                        return;
+                    if (!this.Options.Labels.Visible){
+                        Buffer.AxisXParams = {
+                            Height: 0,
+                            Width: 0,
+                            MarginTop:  0,
+                            MarginLeft: 0,
+                            Angle: 0,
+                        };
+                        return;
+                    }
+
+                    let maxWidth = 0;
+                    for (let i = 0; i < this.Options.Labels.Data.length; i++){
+                        let w = Lure.GetTextWidth(this.Options.Labels.Data[i], this.Options.AxisY.Font.Family, this.Options.AxisY.Font.Size);
+                        if (w > maxWidth)
+                            maxWidth = w;
+                    }
+                    let w = (this.Content.clientWidth - Buffer.AxisYWidth) / this.Options.Labels.Data.length;
+                    w = (this.Content.clientWidth - Buffer.AxisYWidth - w/2) / this.Options.Labels.Data.length;
+                    //debugger;
+                    this.Options.Padding = w/2;
+                    this.Block.AxisX.style.paddingLeft = w/2+'px';
+                    let h = 0; //TODO hardcode fix
+                    let wFact = maxWidth;
+                    let angle;
+
+                    if (this.Options.Labels.Rotation !== 'auto'){
+                        angle = parseFloat(this.Options.Labels.Rotation);
+                    }
+                    else{
+                        let cos = (w)/(wFact);
+                        if (cos < 0.15)
+                            cos = 0;
+                        if (cos > 1)
+                            cos = 1;
+                        //angle = (-90*(1-cos));
+                        //console.log('w',this.Width, w, wFact,cos);
+                        angle = -(Math.acos(cos)*180/Math.PI).toFixed(2);
+                       /* if (angle >0 )
+                            angle = -angle;*/
+                        //console.log('angleold', (-90*(1-cos)));
+                        //console.log('anglenew', h, parseFloat(getComputedStyle(this.Block.AxisX).lineHeight));
+                    }
+                    //Lure.Perf(pp, '--calcx--');
+                    Buffer.AxisXParams = {
+                        Height: Math.round((Math.sqrt(Math.pow(wFact, 2) - Math.pow(w, 2)))) + parseFloat(getComputedStyle(this.Block.AxisX).lineHeight),
+                        Width: wFact,
+                        MarginTop:  (wFact>w)? ((Math.sqrt(Math.pow(wFact, 2) - Math.pow(w, 2))) - h) : 0,
+                        MarginLeft: (wFact>w)? (-w/2):(-(wFact)/2),
+                        Angle: angle,
+                    }
+
+
+
+                }.bind(this),
+                ScaleY: function () {
+                    this._ScaleY = Lure.Chart.GetScaleY(this.Options.Series, (this.Height-Buffer.AxisXParams.Height), this);
+                    return;
+                    if (ctx.Type === 'pie'){
+                        return [];
+                    }
+                    let min = series[0].Data[0];
+                    let max = series[0].Data[0];
+                    let isAutoScale = true;
+                    let isAutoStep = true;
+                    if (ctx.Options.AxisY.Scale[0] !== 'auto' && ctx.Options.AxisY.Scale[1] !== 'auto')
+                    {
+                        isAutoScale = false;
+                        min = ctx.Options.AxisY.Scale[0];
+                        max = ctx.Options.AxisY.Scale[1];
+                    }
+                    if (ctx.Options.AxisY.Scale[2] !== 'auto')
+                        isAutoStep = false;
+                    let mm = [ [series[0].Data[0],series[0].Data[0]] ];
+                    let index = 0;
+                    let scales = [];
+
+                    let sc = {
+                        Scales: [],
+                        Dict: [],
+                        MinMax: null
+                    };
+                    for (let i = 0; i < series.length; i++){
+                        sc.Dict[i] = 0;
+                        if (series[i].OwnAxis){
+                            index++;
+                            if (typeof series[i].OwnAxis[0] !== 'undefined')
+                                mm.push(series[i].OwnAxis);
+                            else
+                                mm.push([series[i].Data[0],series[i].Data[0]]);
+                            sc.Dict[i] = index;
+                        }
+                        for (let j = 0; j < series[i].Data.length; j++){
+                            if (isAutoScale){
+                                if (series[i].Data[j] < min)
+                                    min = series[i].Data[j];
+                                if (series[i].Data[j] > max)
+                                    max = series[i].Data[j];
+                            }
+                            if (series[i].OwnAxis && typeof series[i].OwnAxis[0] === 'undefined'){
+                                if (series[i].Data[j] < mm[index][0])
+                                    mm[index][0] = series[i].Data[j];
+                                if (series[i].Data[j] > mm[index][1])
+                                    mm[index][1] = series[i].Data[j];
+                            }
+                        }
+                    }
+                    mm[0] = [min, max];
+                    sc.MinMax = mm;
+                    for (let i = 0; i < mm.length; i++){
+                        let order = mm[i][1].toString().length;
+                        let step;
+                        if (i===0 && !isAutoStep){
+                            step = ctx.Options.AxisY.Scale[2];
+                        }
+                        else{
+                            step = mm[i][2]? mm[i][2] : ( (mm[i][1]-mm[i][0] )*40 /height / (Math.pow(10, order-1))/5 ).toFixed(1) * Math.pow(10, order-1)*5;
+                        }
+                        let s = mm[i][0];
+                        let scale = [];
+                        if (order < 3 || true){
+                            //debugger;
+                            while (s <= mm[i][1] + ctx.Options.Series[i].Width/2){
+                                scale.push(s);
+                                s += step;
+                            }
+                            scale.push(s);
+                            sc.Scales.push(scale);
+                        }
+                    }
+                    return sc;
+                }.bind(this)
+            };
             /**
              *
              * @returns {string}
              * @constructor
              */
-            function Builder(){
-                let Legend = '';
-                let AxeY = '';
-                let AxeX = '';
-                let Grid = '';
-                let Svg = '';
 
-                const isGraph = (chart.Options.Series.filter(x=>x.Type === 'pie')).length !== chart.Options.Series.length;
-                console.log('isGraph',isGraph);
-                let PathBuilder;
-                if (isGraph)
-                    PathBuilder = Builders.MakeGraph;
 
-                for (let i = 0; i < chart.Options.Series.length; i++){
-                    Legend += Builders.MakeLegend(chart.Options.Series[i], i);
-                    AxeY += Builders.MakeAxisY(chart._ScaleY.Scales[i], i, chart.Options.Series[chart._ScaleY.Dict[i]].Title? chart.Options.Series[chart._ScaleY.Dict[i]].Title:chart.Options.Series[chart._ScaleY.Dict[i]].Name, chart.Options.Series[chart._ScaleY.Dict[i]].Color);
-                    Svg += PathBuilder(chart.Options.Series[i], i);
-                }
-                Legend = `<div class="mt-chart-legend row">${Legend}</div>`;
-                AxeY = `<div class="mt-chart-y row">${AxeY}</div>`;
-                AxeX = Builders.MakeAxisX();
-                Grid = Builders.MakeGrid(chart.Options.Labels.Data.length, chart._ScaleY.Scales[0].length-1);
-                chart.Content.innerHTML= `<div class="mt-chart col">
-                        <div class="mt-chart-caption">
-                          <div class='mt-chart-title'>${Title}</div>
-                          <div class="mt-chart-legend row">${Legend}</div>
-                        </div>
-                        <div class="mt-chart-kek row flex-100">
-                          <div class="mt-chart-y row">${AxeY}</div>
-                          <div class="col flex-100">
-                            <div class="mt-chart-area row flex-100">
-                              <svg class="mt-chart-svg">${Svg}</svg>
-                              <div class="mt-chart-grid" style=" position: absolute;">${Grid}</div>
-                            </div>
-                            <div class="mt-chart-x row">${AxeX}</div>
-                           </div>
-                        </div>
-                      </div>`
-            }
+            let LastRender = {
+                Width: 0,
+                Height: 0,
+                DataLength: 0,
 
-            this.__GetPath = function(serie, line){
-                //debugger;
-                switch (serie.Type){
-                    case 'line':
-                        return this.__GetPathLine(serie, line);
-                    case 'bar':
-                        return this.__GetPathBar(serie, line);
-                    case 'pie':
-                        return '';
-                }
-            }.bind(this);
+            };
+
+
             this.__GetPathLine = function (serie, line) {
                 if (!Buffer.Abscissa || Buffer.Width !== this.Width)
                     Buffer.Abscissa = Lure.Chart.GetAbscissa(chart.Options.Labels.Data, this.Width);
@@ -343,7 +561,7 @@ Lure.Plugin.Chart = {
                 let mm = chart._ScaleY.MinMax[index];
                 //debugger;
                 let DataOrdinata = Lure.Chart.GetOrdinata(serie.Data, scale, mm, chart.Height);
-                let points = Lure.Chart.GetPoints(Buffer.Abscissa, DataOrdinata);
+                let points = Lure.Chart.GetPoints(Buffer.Abscissa, DataOrdinata, this.Options.Padding);
                 Buffer.SeriesPoints[line] = points;
 
                 const n = points.length;
@@ -390,7 +608,7 @@ Lure.Plugin.Chart = {
                 if (serie.Point.Visible)
                     dots += Lure.Chart.GetPathLineDot(xs[n-1] , ys[n-1], line, n-1, serie.Color, serie.Point.Radius );
                 dots += '</g>';
-                return `<g class="mt-chart-serie"><path data-line="${line}" d="${d}" fill="none" stroke="${serie.Color}" stroke-width="${serie.Width}"></path> ${dots}</g>`;
+                return `<g class="mt-chart-serie" data-type="Line"><path data-line="${line}" d="${d}" fill="none" stroke="${serie.Color}" stroke-width="${serie.Width}"></path> ${dots}</g>`;
 
             }.bind(this);
             this.__GetPathBar = function (serie, line) {
@@ -401,99 +619,158 @@ Lure.Plugin.Chart = {
                 let mm = chart._ScaleY.MinMax[index];
                 //debugger;
                 let DataOrdinata = Lure.Chart.GetOrdinata(serie.Data, scale, mm, chart.Height);
-                let points = Lure.Chart.GetPoints(Buffer.Abscissa, DataOrdinata);
+                let points = Lure.Chart.GetPoints(Buffer.Abscissa, DataOrdinata, this.Options.Padding);
                 Buffer.SeriesPoints[line] = points;
                 let height = this.Height;
-                let wd = serie.Width;
 
+                let deilmit = 1;
+                if (!this.Options.SeriesOptions.BarStack)
+                    deilmit = Buffer.SeriesCount.Bar * 0.8;
+                let wd = this.Width/this.Options.Labels.Data.length/2 / deilmit;        //serie.Width;
+                let margin = ((wd*1.2) * (Buffer.SeriesBar)) - (  (wd*1.2) *Buffer.SeriesCount.Bar /2 - (wd*1.2)/2) ;
+
+               // debugger;
 
                 let bricks = '<g class="mt-chart-serie" data-type="Bar">';
                 let GradientId = '';
                 if (this.Options.SeriesOptions.BarGradient){
-                    GradientId = 'bar_' + Math.random().toString(36).replace("0.", '');
+                    GradientId = `lc-gradient-${Lure.Chart.Count}`;
                     bricks += `<linearGradient id="${GradientId}"  x1="0" y1="0%"><stop offset="0%" stop-color="rgba(0,0,0,0.2)"/><stop offset="33%" stop-color="rgba(255,255,255,0.2)"/><stop offset="100%" stop-color="rgba(0,0,0,0.3)"/></linearGradient>`;
                 }
                 // let d = `M ${points[0][0]}  ${points[0][1]}`;
-
                 let dots = '';
                 for (let i = 0; i < points.length; i++){
-                    let d =`M ${points[i][0]-wd/2} ${height} L ${(points[i][0]+wd/2)} ${height} ${(points[i][0]+wd/2)} ${points[i][1]} ${points[i][0]-wd/2} ${points[i][1]}Z`;
+                    let d =`M ${margin+points[i][0]-wd/2} ${height} L ${(margin+points[i][0]+wd/2)} ${height} ${(margin+points[i][0]+wd/2)} ${points[i][1]} ${margin+points[i][0]-wd/2} ${points[i][1]}Z`;
                     // debugger;
-                    bricks += `<path class="mt-chart-tooltipable" data-line="${line}" data-item="${i}" d="${d}" fill="${serie.Color}" stroke="#000" stroke-width="0"></path>`;
+                    bricks += `<g class="lc-bar-elem"><path class="lc-bar-elem" data-line="${line}" data-item="${i}" d="${d}" fill="${serie.Color}" stroke="#000" stroke-width="0"></path>`;
                     if (this.Options.SeriesOptions.BarGradient)
-                        bricks += `<path class="mt-chart-tooltipable"  data-line="${line}" data-item="${i}" d="${d}" fill="url(#${GradientId})" ></path>`;
+                        bricks += `<path class="lc-bar-elem-gradient"  data-line="${line}" data-item="${i}" d="${d}" fill="url(#${GradientId})" ></path>`;
+                    bricks += `<path class="mt-chart-tooltipable" data-type="bar" data-line="${line}" data-item="${i}" d="${d}" fill="#fff" fill-opacity="0" stroke="#fff" stroke-width="0"></path>`;
+                    bricks +='</g>';
                     //dots += Lure.Chart.GetPathLineDot(points[i][0] , points[i][1], line, i, serie.Color, serie.Point.Radius );
                 }
                 bricks += dots+'</g>';
+                Buffer.SeriesBar++;
                 return bricks;
+            }.bind(this);
+            this.__GetSvgCasual = function () {
+                let lines = '';
+                let bars  = '';
+                for (let i = 0; i < this.Options.Series.length; i++){
+                    if (!this.Options.Series[i].isVisible)
+                        continue;
+                    switch (this.Options.Series[i].Type){
+                        case 'line':
+                            lines += this.__GetPathLine(this.Options.Series[i], i);
+                            break;
+                        case 'bar':
+                            bars += this.__GetPathBar(this.Options.Series[i], i);
+                            break;
+                    }
+                }
+                return bars+lines;
+            }.bind(this);
+            this.__GetSvgPie = function () {
+                let sectors = '';
+                let d = this.Height< this.Width? this.Height*0.9:this.Width*0.9;
+                //r= r/4;
+                //let wd = 2*r;
+                for (let i = 0; i < this.Options.Series.length; i++){
+                    let sum = 0;
+                    let anglestart = -45;
+                    let r = d/4 * (this.Options.Series.length-i)/(Buffer.SeriesCount.Pie+Buffer.SeriesCount.Ring);
+                    let wd = 2*r;
+                    if (this.Options.Series[i].Type === 'ring'){
+                        wd = this.Options.Series[i].Width;
+                        r = r*2 - wd/2;
+
+                    }
+                    for (let j = 0; j < this.Options.Series[i].Data.length; j++){
+                        sum += this.Options.Series[i].Data[j];
+                    }
+                    for (let j = 0; j < this.Options.Series[i].Data.length; j++){
+                        let angle = this.Options.Series[i].Data[j]/sum * 360;
+                        //debugger;
+                        sectors += `<g>`;
+                        sectors += `<path d="${Lure.Chart.PieArc(this.Width/2, this.Height/2, r, anglestart, anglestart+angle)}" fill="none" stroke="${this.Options.Series[i].Colors[j]}" stroke-width="${wd}" stroke-opacity="1"></path>`;
+                        sectors += `<path class="mt-chart-tooltipable" data-type="pie" data-line="${i}" data-item="${j}" d="${Lure.Chart.PieArc(this.Width/2, this.Height/2, r, anglestart, anglestart+angle)}" fill="none" stroke="#fff" stroke-width="${wd}" stroke-opacity="0"></path>`;
+                        sectors += `</g>`;
+                        anglestart += angle;
+                        //debugger;
+                    }
+                }
+                //debugger;
+                return sectors;
             }.bind(this);
 
 
-            (function Init(){
-                /* let Legend = '';
-                 for (let i = 0; i < this.Options.Series.length; i++){
-                 Legend += Lure.Chart.MakeLegend(this.Options.Series[i], i);
-                 }*/
+
+
+
+            function Refresh(){
+                Buffer.SeriesBar = 0;
+
+                //-1. check Tooltip Temptale
+                //Init.Tooltip();
+               // //pp.Perf('Check-Tooltip');
+                //0. build legend
+
+                Init.Series();
+                //pp.Perf('Init-Series');
+
                 this.Block.Legend = Buffer.Legend;
-                Buffer.ParametersAxisX = Builders.CalcAxisX();
-                console.log('this.Height-Buffer.ParametersAxisX.Height',this.Height,Buffer.ParametersAxisX.Height);
-                this._ScaleY = Lure.Chart.GetScaleY(this.Options.Series, (this.Height-Buffer.ParametersAxisX.Height), this);
+                //pp.Perf('Render-Legend');
 
-                this.Block.AxisX = Builders.MakeAxisX();
-                this.Block.Grid  = Lure.Chart.GetGrid(this.Options.Labels.Data.length, this._ScaleY.Scales[0].length-1);
+                //1. Init Y width
 
-                const isGraph = this.isGraph;
-                console.log('isGraph',isGraph);
-                let PathBuilder;
-                if (isGraph)
-                    PathBuilder = Builders.MakeGraph;
-                let AxeY = '';
-                //let Svg = '';
-                let SvgBar = '';
-                let SvgLine = '';
+                Init.AxisY();
+                //pp.Perf('Init-AxisY');
+                //2. Init X height, and build AxisX cuz we have Y width.
+                //Buffer.ParametersAxisX = Builder.CalcAxisX();
+                Init.AxisX();
+                Builder.AxisX();
+                //pp.Perf('Init-AxisX');
+                //3. Init scales Y axis
 
-                /*
-                 for (let i = 0; i < chart._ScaleY.Scales.length; i++){
-                 let index = this._ScaleY.Dict[i];
-                 //debugger;
-                 AxeY += Builders.MakeAxisY(chart._ScaleY.Scales[index], i, chart.Options.Series[i].Title, chart.Options.Series[i].Color);
-                 }*/
-                AxeY = Builders.MakeAxisY();
-                this.Block.AxisY = AxeY;
-                for (let i = 0; i < chart.Options.Series.length; i++){
-
-                    //AxeY += Builders.MakeAxisY(chart._ScaleY.Scales[i], i, chart.Options.Series[chart._ScaleY.Dict[i]].Title? chart.Options.Series[chart._ScaleY.Dict[i]].Title:chart.Options.Series[chart._ScaleY.Dict[i]].Name, chart.Options.Series[chart._ScaleY.Dict[i]].Color);
-                    //Svg += PathBuilder(chart.Options.Series[i], i);
-                    switch (chart.Options.Series[i].Type){
-                        case 'line':
-                            SvgLine += this.__GetPathLine(chart.Options.Series[i], i);
-                            break;
-                        case 'bar':
-                            SvgBar += this.__GetPathBar(chart.Options.Series[i], i);
-                            break;
-                    }
-                    //Svg += this.__GetPath(chart.Options.Series[i], i);
-                    // this.__GetPath(chart.Options.Series[i], i)
-                }
+                Init.ScaleY();
+                //this._ScaleY = Lure.Chart.GetScaleY(this.Options.Series, (this.Height-Buffer.ParametersAxisX.Height), this);
+                //this._ScaleY = Lure.Chart.GetScaleY(this.Options.Series, (this.Height-Buffer.AxisXParams.Height), this);
+                //pp.Perf('Init-AxisYScales');
 
 
-                this.Block.Svg   = SvgBar+SvgLine;
+                //this.Block.AxisX = Builder.MakeAxisX();
+                //this.Block.AxisX.style.height = Buffer.AxisXParams.Height+'px';
 
 
+                this.Block.Grid  = Builder.MakeGrid();
+                //pp.Perf('Render-Grid');
 
+                this.Block.AxisY = Builder.MakeAxisY();
+                //pp.Perf('Render-AxisY');
+                if (this.Options.Type === 'line' || this.Options.Type === 'bar')
+                    this.Block.Svg   = chart.__GetSvgCasual();
+                if (this.Options.Type === 'pie' || this.Options.Type === 'ring')
+                    this.Block.Svg   = chart.__GetSvgPie();
                 this.Block.AxisY.style.height = this.Height+'px';
+                //pp.Perf('Render-Svg');
+
+                let lines = Lure.SelectAll('.mt-chart-serie[data-type="Line"] path', this.Content);
+                LastRender.Height = this.Height;
+                LastRender.Width = this.Width;
+                lines.forEach(function (item) {
+                    const dash = item.getTotalLength();
+                    item.style.strokeDasharray = dash;
+                    item.style.strokeDashoffset = dash;
+                });
+                //pp.Perf('Animations-add');
+                //pp.Elapsed('-elapsed-');
+            }
 
 
-                //console.log(`AxisX FactHeight: ${this.Block.AxisX.clientHeight}`);
-                // this.Block.AxisX.style.height = this.BuidlerData.AxisXOptions.Height+'px';
-
-            }.bind(this))();
             /********************************************************************************/
             /*******/
-
-
-
             /*<tooltips>*/
+            Init.Tooltip();
             this.Tooltip = new Lure.Content({
                 Name: 'Tooltipchek',
                 Target: this.Block.ChartArea,
@@ -526,7 +803,7 @@ Lure.Plugin.Chart = {
                                 this.Content.style.display = 'none';
                             }.bind(this), 200)
 
-                        }.bind(this), 500);
+                        }.bind(this), 800);
                 },
                 Show: function (options) {
                     clearTimeout(this._Timer);
@@ -540,13 +817,16 @@ Lure.Plugin.Chart = {
                 },
                 Methods: function () {
                     this.Do = function (e) {
-                        let tag = e.currentTarget.tagName.toLowerCase();
+                        let tag = e.currentTarget.dataset['type'];
                         switch (tag){
-                            case 'circle':
+                            case 'line':
                                 this.DoCircle(e);
                                 break;
-                            case 'path':
+                            case 'bar':
                                 this.DoBar(e);
+                                break;
+                            case 'pie':
+                                this.DoPie(e);
                                 break;
 
                         }
@@ -575,13 +855,11 @@ Lure.Plugin.Chart = {
                     }.bind(this);
                     this.DoBar = function (e) {
                         let bar = e.currentTarget;
+                        bar.setAttribute('fill-opacity', 0.2);
                         let i = parseInt(bar.dataset['line']);
                         let j = parseInt(bar.dataset['item']);
-
                         // bar.attributes['stroke-width'].value = 2;
-
                         //console.log('', i, j, Buffer.SeriesPoints[i][j], [e.offsetX, e.offsetY]);
-
                         let o = {
                             data: [chart.Options.Series[i].Name, chart.Options.Series[i].Data[j]],
                             color: chart.Options.Series[i].Color,
@@ -589,6 +867,53 @@ Lure.Plugin.Chart = {
                         };
                         this.Show(o);
                     }.bind(this);
+                    this.DoPie = function (e) {
+                        let bar = e.currentTarget;
+                        bar.setAttribute('stroke-opacity', 0.2);
+                        let i = parseInt(bar.dataset['line']);
+                        let j = parseInt(bar.dataset['item']);
+                        // bar.attributes['stroke-width'].value = 2;
+                        //console.log('', i, j, Buffer.SeriesPoints[i][j], [e.offsetX, e.offsetY]);
+                        let o = {
+                            data: [chart.Options.Series[i].Labels? chart.Options.Series[i].Labels[j]: chart.Options.Series[i].Name, chart.Options.Series[i].Data[j]],
+                            color: chart.Options.Series[i].Colors[j],
+                            pos: [e.offsetX, e.offsetY]
+                        };
+                        this.Show(o);
+                    }.bind(this);
+
+                    this.Undo = function (e) {
+                        let tag = e.currentTarget.dataset['type'];
+                        switch (tag){
+                            case 'line':
+                                this.UndoCircle(e);
+                                break;
+                            case 'bar':
+                                this.UndoBar(e);
+                                break;
+                            case 'pie':
+                                this.UndoPie(e);
+                                break;
+                        }
+                    };
+                    this.UndoCircle = function (e) {
+                        let circle = e.currentTarget;
+                        let width = parseInt(circle.attributes['stroke-width'].value);
+                        circle.attributes['stroke'].value = circle.attributes['fill'].value;
+                        circle.attributes['fill'].value = "#fff";
+                        circle.attributes['r'].value -= width;
+                        this.Hide();
+                    };
+                    this.UndoBar = function (e) {
+                        let bar = e.currentTarget;
+                        bar.setAttribute('fill-opacity', 0);
+                        this.Hide();
+                    };
+                    this.UndoPie = function (e) {
+                        let pie = e.currentTarget;
+                        pie.setAttribute('stroke-opacity', 0);
+                        this.Hide();
+                    }
 
                 },
                 AfterBuild: function () {
@@ -598,71 +923,54 @@ Lure.Plugin.Chart = {
             Lure.AddEventListenerGlobal('mouseover', '.mt-chart-point, .mt-chart-tooltipable', function (e) {
                 this.Tooltip.Do(e);
             }, this.Content, this);
-            Lure.AddEventListenerGlobal('mouseout', '.mt-chart-point', function (e) {
-                //console.log(e.currentTarget.dataset['tooltip']);
-                let circle = e.currentTarget;
-                let width = parseInt(circle.attributes['stroke-width'].value);
-                circle.attributes['stroke'].value = circle.attributes['fill'].value;
-                circle.attributes['fill'].value = "#fff";
-                circle.attributes['r'].value -= width;
-                chart.Tooltip.Hide();
-            }, this.Content);
+            Lure.AddEventListenerGlobal('mouseout', '.mt-chart-point, .mt-chart-tooltipable' , function (e) {
+                chart.Tooltip.Undo(e);           }, this.Content);
             /*</tooltips>*/
-
-            const getSuperdata = function () {
-                let superdata = [];
-                for (let i =0; i< Series.length; i++){
-                    let index = this._ScaleY.Dict[i];
-                    let scale = this._ScaleY.Scales[index];
-                    let mm = this._ScaleY.MinMax[index];
-                    let DataOrdinata = Lure.Chart.GetOrdinata(Series[i].Data, scale, mm, this.Block.Svg.Height);
-                    this._Abscissa = Lure.Chart.GetAbscissa(Labels.Data, this.Block.Svg.Width);
-                    let points = Lure.Chart.GetPoints(this._Abscissa, DataOrdinata);
-                    let h = 0;//
-                    superdata[i] = {
-                        h: this.Block.Svg.Height,
-                        Name: chart.Options.Series[i].Name,
-                        Data: chart.Options.Series[i].Data,
-                        DataPoints: points,
-                        Color: chart.Options.Series[i].Color,
-                        Path: Lure.Chart.GetPath(points, chart.Options.Series[i].Type, i, chart.Options.Series[i].Color, chart.Options.Series[i].Width),
-                        Width: chart.Options.Width,
-                        options:{
-                            pointSize: Series[i].Width? 4+Series[i].Width/4: 4
-                        }
-                    }
-                }
-                chart.SuperData = superdata;
-                return superdata;
-            }.bind(this);
 
             this.TestB = function () {
                 let per = performance.now();
-                Builder();
+               // Builder();
                 Lure.Perf(per, 'builder');
             };
-            this.Refresh = function () {
+            /*
+            this._TimerRefresh = null;
+            this._IntervalResponse = setInterval(function () {
+                if (this.Width !== LastRender.Width || this.Height !== LastRender.Height){
+                    clearTimeout(this._TimerRefresh);
+                    console.log('[changed]');
+                    LastRender.Height = this.Height;
+                    LastRender.Width = this.Width;
+                    this._TimerRefresh = setTimeout(function () {
+                        console.log('[redraw]');
+                        Refresh.call(this);
 
 
-            }.bind(this);
-            this.Refresh();
-            setTimeout(function(){
-
-            }.bind(this), 0);
-
+                    }.bind(this) ,200);
+                }
+            }.bind(this), 200);
+            */
             this.Buffer = Buffer;
+
+            // Init
+
+
+            this.Width;   //just init
+            //this.Heigth;   //just init
+            //pp.Perf('Constructor');
+            Refresh.call(this);
+            //Refresh.call(this);
+            //**  API  **//
+
+            this.Refresh = function () {
+                Refresh.call(this);
+            }.bind(this);
         }
         get Height(){
-            //return this.__svg.clientHeight;
             return this.Block.Svg.clientHeight;
         }
         get Width(){
-            return this.Block.Svg.clientWidth;
-            //return this.__svg.clientWidth;
+            return this.Block.Svg.clientWidth - this.Options.Padding;
         }
-
-
-
         /*statics*/
         static GetSeriePointOptions(serie, isGraph){
             let p = serie.Point ? serie.Point : {};
@@ -672,7 +980,6 @@ Lure.Plugin.Chart = {
                 debugger;
             return p;
         }
-
         static GetScaleY(series, height, ctx){
             if (ctx.Type === 'pie'){
                 return [];
@@ -738,7 +1045,7 @@ Lure.Plugin.Chart = {
                 let scale = [];
                 if (order < 3 || true){
                     //debugger;
-                    while (s <= mm[i][1]){
+                    while (s <= mm[i][1] + ctx.Options.Series[i].Width/2){
                         scale.push(s);
                         s += step;
                     }
@@ -771,15 +1078,15 @@ Lure.Plugin.Chart = {
 
 
         }
-        static GetPoints(X,Y){
+        static GetPoints(X,Y, padding = 0){
             let points = [];
             //let length = X.length >= Y.length ? X.length:Y.length;
             for (let i = 0; i < Y.length; i++){
-                points.push([X[i], Y[i]]);
+                points.push([X[i] + padding, Y[i]]);
             }
             return points;
         }
-        static GetPath(points, type, line, color, width){
+        static aGetPath(points, type, line, color, width){
             switch (type){
                 case 'line':
                     return Lure.Chart.GetPathLine(points, line, color, width);
@@ -789,7 +1096,7 @@ Lure.Plugin.Chart = {
                     return '';
             }
         }
-        static GetPathLine(points, line, color, width, isDots=true){
+        static aGetPathLine(points, line, color, width, isDots=true){
             const n = points.length;
 
             let xs = [];        //x
@@ -838,10 +1145,10 @@ Lure.Plugin.Chart = {
             return `<g class="mt-chart-serie"><path data-line="${line}" d="${d}" fill="none" stroke="${color}" stroke-width="${width}"></path> ${dots}</g>`;
         }
         static GetPathLineDot(x,y, i,j, color, width){
-            return `<circle class="mt-chart-point" data-line="${i}" data-item="${j}" cx="${x}" cy="${y}" r="${width}" stroke="${color}" stroke-width="2" fill="#fff" ></circle>`
+            return `<circle class="mt-chart-point" data-type="line" data-line="${i}" data-item="${j}" cx="${x}" cy="${y}" r="${width}" stroke="${color}" stroke-width="2" fill="#fff" ></circle>`
 
         }
-        static GetPathBar(points, line, color, width){
+        static aGetPathBar(points, line, color, width){
             const wd = 30;
             console.log('GetPathBar', points);
             // return '';
@@ -850,27 +1157,73 @@ Lure.Plugin.Chart = {
             let dots = '';
             for (let i = 0; i < points.length; i++){
                 let d =`M ${points[i][0]} ${points[i][1]} L ${points[i][0]} ${points[i][1]}`;
-                dots += Lure.Chart.GetPathLineDot(points[i][0] , points[i][1], line, i, color, width );
+                //dots += Lure.Chart.GetPatwehLineDot(points[i][0] , points[i][1], line, i, color, width );
             }
             // debugger;
-            return dots;
+            return do2ts;
         }
 
 
+
+        static PolarToCartesius(centerX, centerY, radius, angleInDegrees) {
+            let angleInRadians = (angleInDegrees-0) * Math.PI / 180;
+
+            return {
+                x: centerX + (radius * Math.cos(angleInRadians)),
+                y: centerY + (radius * Math.sin(angleInRadians))
+            };
+        }
+        static PieArc(x, y, radius, startAngle, endAngle){
+            //debugger;
+            let start = Lure.Chart.PolarToCartesius(x, y, radius, endAngle);
+            let end = Lure.Chart.PolarToCartesius(x, y, radius, startAngle);
+
+            let largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+            let d = [
+                "M", start.x, start.y,
+                "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
+            ].join(" ");
+
+            return d;
+        }
+        static CheckOwnAxis(ep){
+            if (!ep.OwnAxis)
+                return false;
+            if (Array.isArray(ep.OwnAxis)){
+                let min = false;
+                let max = false;
+                if (ep.OwnAxis[0] !== 'auto' || typeof ep.OwnAxis[0] !== 'undefined')
+                    min = ep.Data[0];
+                if (ep.OwnAxis[1] !== 'auto' || typeof ep.OwnAxis[1] !== 'undefined')
+                    max = ep.Data[1];
+                if (!min && !max)
+                    return ep.OwnAxis;
+
+                for (let i =0; i< ep.Data.length; i++){
+                    if (ep.Data[i] < min)
+                        min = ep.Data[i];
+                    if (ep.Data[i] > max)
+                        max = ep.Data[i];
+                }
+            }
+        }
         /*builder*/
         static MakeLegend(Serie, i){
+            let id = `lc-legeng_ch${Lure.Chart.Count}`;
             return `<div class="mt-chart-legend__item row">
-                          <input class="mt-legend-checkbox" type="checkbox" checked="checked" id="legcheck${Serie.Name}${i}">
+                          <input class="mt-legend-checkbox" type="checkbox" ${Serie.isVisible? 'checked="cheched"':''} id="${id}">
                           <div class="mt-legend-icon" style="background-color: ${Serie.Color}"></div>
-                          <label class="mt-legend-label" for="legcheck${Serie.Name}${i}">${Serie.Name}</label>
+                          <label class="mt-legend-label" for="${id}">${Serie.Name}</label>
                         </div>`;
         }
-
-        static GetGrid(sizeX, sizeY){
+        static GetGrid(sizeX, sizeY, padding=0){
             let grid = ``;
             for (let i = 0; i < sizeY; i++){
-                grid += `<div class="mt-chart__grid-line row flex-100 flex-between">`;
+                grid += `<div class="mt-chart__grid-line row flex-100 flex-between" >`;
                 for (let j = 0; j < sizeX; j++) {
+                    if (j === 0)
+                        grid += `<div class='mt-chart__grid-item flex-100' style="width: ${padding}px; max-width: ${padding}px"></div>`;
                     grid += `<div class='mt-chart__grid-item flex-100'></div>`;
                 }
                 grid += `</div>`;
@@ -882,15 +1235,17 @@ Lure.Plugin.Chart = {
 };
 
 Lure.Chart = Lure.Plugin.Chart.Chart;
+Lure.Chart.Count = 0;
 
 
-Lure.__GenegateString = function () {
-    let gen = Math.random().toString(36).replace("0.", '').replace(/[\d]+/, '').substring(0,1);
+Lure._GenerateString = function (prefix='') {
+    let gen = prefix+(Math.random().toString(36)+Math.random().toString(36)+Math.random().toString(36)).replace("0.", '').replace(/[\d]+/, '').substring(0,1);
     if (Lure.Select(`#${gen}`)){
-        gen = Lure.__GenegateString();
+        gen = Lure._GenerateString(prefix);
     }
     return gen;
 };
+
 
 
 

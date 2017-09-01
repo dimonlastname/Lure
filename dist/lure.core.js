@@ -464,6 +464,14 @@ return \``;
 
 
             };
+            this.GetTextWidth = function(txt, fontname, fontsize){
+                if(this.c === undefined){
+                    this.c=document.createElement('canvas');
+                    this.ctx=this.c.getContext('2d');
+                }
+                this.ctx.font = fontsize + ' ' + fontname;
+                return this.ctx.measureText(txt).width;
+            };
             this.GetInlineSize = function(elem, fontSize='1rem'){
                 const hiddenStyle = "left:-10000px;top:-10000px;height:auto;width:auto;position:absolute;";
                 const clone = document.createElement('div');
@@ -480,6 +488,30 @@ return \``;
                 parent.document.body.appendChild(clone);
                 const sizes = {width:clone.clientWidth,height:clone.clientHeight};
                 parent.document.body.removeChild(clone);
+                return sizes;
+            };
+            this.GetInlineSize1 = function(elem, fontSize='12px//'){
+                let pp = performance.now();
+                const hiddenStyle = "left:-10000px;top:-10000px;height:auto;width:auto;position:absolute;";
+                const clone = document.createElement('div');
+                for (let k in elem.style) {
+                    try {
+                        if ((elem.style[k] !== '') && (elem.style[k].indexOf(":") > 0)) {
+                            clone.style[k] = elem.style[k];
+                        }
+                    } catch (e) {}
+                }
+                document.all ? clone.style.setAttribute('cssText', hiddenStyle) : clone.setAttribute('style', hiddenStyle);
+                clone.style.fontSize = fontSize;
+                clone.innerHTML = elem.innerHTML;
+                parent.document.body.appendChild(clone);
+                let xx = getComputedStyle(clone);
+                let ps = performance.now();
+                let sizes = {width: $this.GetTextWidth(elem.innerText, xx.getPropertyValue('font-family'), xx.getPropertyValue("font-size")), height: 12};
+                Lure.Perf(ps, '--size');
+                parent.document.body.removeChild(clone);
+                console.log('sizes', sizes, xx);
+                Lure.Perf(pp, '--calxXwidth');
                 return sizes;
             };
             this.isNumeric = function(n) {
@@ -684,7 +716,7 @@ return \``;
                 Lure._DialogCount--;
                 if (OnAgree !== null && OnAgree !== undefined)
                     OnAgree();
-                if (Lure.Settings.DialogBlur /*&& Lure._DialogCount < 1*/ ) //TODO to solve bug
+                if (Lure.Settings.DialogBlur && Lure._DialogCount < 1 )
                     Lure.Select(Lure.Settings.DialogBlur).classList.remove('lure-blur');
                 //$(Lure.Settings.DialogBlur).removeClass('lure-blur');
                 wrap.remove();
@@ -702,7 +734,7 @@ return \``;
                     Lure._DialogCount--;
                     if (OnCancel !== null)
                         OnCancel();
-                    if (Lure.Settings.DialogBlur  /*&& Lure._DialogCount < 1*/)//TODO to solve bug
+                    if (Lure.Settings.DialogBlur  && Lure._DialogCount < 1)
                         Lure.Select(Lure.Settings.DialogBlur).classList.remove('lure-blur');
                     //$(Lure.Settings.DialogBlur).removeClass('lure-blur');
                     wrap.remove();
@@ -773,3 +805,49 @@ return \``;
     }
     return new LureClass();
 })();
+Lure.Diagnostics = {};
+Lure.Diagnostics.Perf = class LurePerf{
+    constructor(enabled=true){
+        let Started = performance.now();
+        let Stepped = Started;
+
+        /**
+         *
+         * @returns {number}
+         * @constructor
+         */
+        this.Reset = function () {
+            Started = performance.now();
+            Stepped = Started;
+            return 0;
+        };
+        /**
+         *
+         * @param name
+         * @returns {string}
+         * @constructor
+         */
+        this.Elapsed = function (name='Perf') {
+            if (!enabled)
+                return 0;
+            let v = (performance.now() - Started).toFixed(2);
+            console.info(`[${name}]: ${ v }ms`);
+            return v;
+        };
+        /**
+         *
+         * @param name
+         * @returns {string}
+         * @constructor
+         */
+        this.Perf = function (name='Perf') {
+            if (!enabled)
+                return 0;
+            let step = performance.now();
+            let v = (step - Stepped).toFixed(2);
+            console.info(`[${name}]: ${ v }ms`);
+            Stepped = step;
+            return v;
+        };
+    }
+};
