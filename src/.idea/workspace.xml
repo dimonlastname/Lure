@@ -18,7 +18,7 @@
       <file leaf-file-name="lure.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lure.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7157">
+            <state relative-caret-position="676">
               <caret line="421" column="44" lean-forward="false" selection-start-line="421" selection-start-column="44" selection-end-line="421" selection-end-column="44" />
               <folding />
             </state>
@@ -28,7 +28,7 @@
       <file leaf-file-name="lure.core.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lure.core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
+            <state relative-caret-position="702">
               <caret line="486" column="49" lean-forward="false" selection-start-line="486" selection-start-column="49" selection-end-line="486" selection-end-column="49" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -56,35 +56,66 @@
                 <element signature="e#19314#19437#0" expanded="false" />
                 <element signature="e#19481#20054#0" expanded="false" />
                 <element signature="e#20103#21110#0" expanded="false" />
-                <marker date="1504276673202" expanded="true" signature="220:21132" ph="{...}" />
-                <marker date="1504276673202" expanded="true" signature="242:21132" ph="{...}" />
-                <marker date="1504276673202" expanded="true" signature="266:21132" ph="{...}" />
+                <marker date="1504524526792" expanded="true" signature="220:37768" ph="{...}" />
+                <marker date="1504524526792" expanded="true" signature="242:37738" ph="{...}" />
+                <marker date="1504524526792" expanded="true" signature="37948:38027" ph="/** @returns {number} ...*/" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lure.chart.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="lure.chart.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lure.chart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="29" lean-forward="false" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+            <state relative-caret-position="12451">
+              <caret line="1260" column="22" lean-forward="false" selection-start-line="1260" selection-start-column="22" selection-end-line="1260" selection-end-column="22" />
               <folding>
-                <marker date="1504280286588" expanded="true" signature="20:356" ph="{&quot;Core&quot;: ''...}" />
-                <marker date="1504280286588" expanded="true" signature="62:356" ph="{...}" />
+                <marker date="1504624797887" expanded="true" signature="3741:4835" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="3812:4012" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="4092:4790" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="4236:4743" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="4329:4347" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="4348:4616" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="4438:4468" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="8098:8159" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="8825:9187" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="9006:9024" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="10143:10180" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="10378:10434" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="11869:11930" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="43987:44096" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="60097:60527" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="60376:60391" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="60427:60445" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="60795:61241" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="61081:61096" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="61132:61150" ph="..." />
+                <marker date="1504624797887" expanded="true" signature="61650:61694" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lure.content.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lure.content.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lure.content.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="1083" column="33" lean-forward="false" selection-start-line="1083" selection-start-column="33" selection-end-line="1083" selection-end-column="33" />
+            <state relative-caret-position="372">
+              <caret line="1260" column="0" lean-forward="true" selection-start-line="1260" selection-start-column="0" selection-end-line="1260" selection-end-column="0" />
               <folding>
-                <marker date="1504011254168" expanded="false" signature="27307:32108" ph="{...}" />
-                <marker date="1504011254168" expanded="false" signature="54169:58921" ph="{...}" />
+                <element signature="e#1242#27367#0" expanded="false" />
+                <element signature="e#27382#32200#0" expanded="false" />
+                <element signature="e#32218#59019#0" expanded="false" />
+                <element signature="e#54244#59013#0" expanded="false" />
+                <element signature="e#59292#59393#0" expanded="false" />
+                <element signature="e#59452#67233#0" expanded="false" />
+                <element signature="e#67260#69229#0" expanded="false" />
+                <element signature="e#69254#70861#0" expanded="false" />
+                <element signature="e#70968#73606#0" expanded="false" />
+                <marker date="1504509426117" expanded="true" signature="59657:60191" ph="..." />
+                <marker date="1504509426117" expanded="true" signature="59706:59849" ph="..." />
+                <marker date="1504509426117" expanded="true" signature="59963:60165" ph="..." />
+                <marker date="1504509426117" expanded="true" signature="67538:67551" ph="..." />
+                <marker date="1504509426117" expanded="true" signature="68107:68621" ph="..." />
               </folding>
             </state>
           </provider>
@@ -93,21 +124,9 @@
       <file leaf-file-name="lure.basic.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lure.basic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="298" column="0" lean-forward="true" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#201#302#0" expanded="false" />
-                <element signature="e#361#8142#0" expanded="false" />
-                <element signature="e#8169#10138#0" expanded="false" />
-                <element signature="e#10163#11770#0" expanded="false" />
-                <element signature="e#11877#14515#0" expanded="false" />
-                <marker date="1504096300342" expanded="true" signature="566:1100" ph="..." />
-                <marker date="1504096300342" expanded="true" signature="615:758" ph="..." />
-                <marker date="1504096300342" expanded="true" signature="872:1074" ph="..." />
-                <marker date="1504096300342" expanded="true" signature="8447:8460" ph="..." />
-                <marker date="1504096300342" expanded="true" signature="9016:9530" ph="..." />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -140,10 +159,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/lure.scss" />
-        <option value="$PROJECT_DIR$/lure.chart.js" />
-        <option value="$PROJECT_DIR$/lure.basic.js" />
         <option value="$PROJECT_DIR$/lure.core.js" />
+        <option value="$PROJECT_DIR$/lure.basic.js" />
         <option value="$PROJECT_DIR$/lure.content.js" />
+        <option value="$PROJECT_DIR$/lure.chart.js" />
       </list>
     </option>
   </component>
@@ -160,13 +179,13 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="342" />
+    <option name="x" value="267" />
     <option name="y" value="102" />
-    <option name="width" value="1383" />
+    <option name="width" value="1429" />
     <option name="height" value="873" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -179,24 +198,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -231,14 +233,15 @@
       <workItem from="1504001111850" duration="17137000" />
       <workItem from="1504263494486" duration="5353000" />
       <workItem from="1504278237163" duration="597000" />
+      <workItem from="1504509249580" duration="18557000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23087000" />
+    <option name="totallyTimeSpent" value="41644000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="342" y="102" width="1383" height="873" extended-state="1" />
+    <frame x="267" y="102" width="1429" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24945135" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -267,185 +270,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lure.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7157">
-          <caret line="421" column="44" lean-forward="false" selection-start-line="421" selection-start-column="44" selection-end-line="421" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8126">
-          <caret line="478" column="49" lean-forward="true" selection-start-line="478" selection-start-column="49" selection-end-line="478" selection-end-column="49" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#953#1406#0" expanded="false" />
-            <element signature="e#1457#2053#0" expanded="false" />
-            <element signature="e#2101#5640#0" expanded="false" />
-            <element signature="e#5692#6208#0" expanded="false" />
-            <element signature="e#6274#8373#0" expanded="false" />
-            <element signature="e#8441#8749#0" expanded="false" />
-            <element signature="e#8763#8964#0" expanded="false" />
-            <element signature="e#9027#10908#0" expanded="false" />
-            <element signature="e#10973#13800#0" expanded="false" />
-            <element signature="e#13814#14000#0" expanded="false" />
-            <element signature="e#14082#14429#0" expanded="false" />
-            <element signature="e#14443#14618#0" expanded="false" />
-            <element signature="e#14701#15313#0" expanded="false" />
-            <element signature="e#15327#15502#0" expanded="false" />
-            <element signature="e#15563#15747#0" expanded="false" />
-            <element signature="e#15761#15940#0" expanded="false" />
-            <element signature="e#16007#16289#0" expanded="false" />
-            <element signature="e#16303#16575#0" expanded="false" />
-            <element signature="e#16684#17701#0" expanded="false" />
-            <element signature="e#17715#17830#0" expanded="false" />
-            <element signature="e#17882#19300#0" expanded="false" />
-            <element signature="e#19314#19437#0" expanded="false" />
-            <element signature="e#19481#20054#0" expanded="false" />
-            <element signature="e#20103#21110#0" expanded="false" />
-            <marker date="1504276673202" expanded="true" signature="220:21132" ph="{...}" />
-            <marker date="1504276673202" expanded="true" signature="242:21132" ph="{...}" />
-            <marker date="1504276673202" expanded="true" signature="266:21132" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
-          <folding>
-            <marker date="1504280286588" expanded="true" signature="20:356" ph="{&quot;Core&quot;: ''...}" />
-            <marker date="1504280286588" expanded="true" signature="62:356" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.basic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="298" column="0" lean-forward="true" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#201#302#0" expanded="false" />
-            <element signature="e#361#8142#0" expanded="false" />
-            <element signature="e#8169#10138#0" expanded="false" />
-            <element signature="e#10163#11770#0" expanded="false" />
-            <element signature="e#11877#14515#0" expanded="false" />
-            <marker date="1504096300342" expanded="true" signature="566:1100" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="615:758" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="872:1074" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="8447:8460" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="9016:9530" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.content.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16439">
-          <caret line="1083" column="33" lean-forward="true" selection-start-line="1083" selection-start-column="33" selection-end-line="1083" selection-end-column="33" />
-          <folding>
-            <marker date="1504011254168" expanded="false" signature="27307:32108" ph="{...}" />
-            <marker date="1504011254168" expanded="false" signature="54169:58921" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7157">
-          <caret line="421" column="44" lean-forward="false" selection-start-line="421" selection-start-column="44" selection-end-line="421" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.content.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17935">
-          <caret line="1055" column="42" lean-forward="false" selection-start-line="1055" selection-start-column="36" selection-end-line="1055" selection-end-column="42" />
-          <folding>
-            <marker date="1504011254168" expanded="false" signature="27307:32108" ph="{...}" />
-            <marker date="1504011254168" expanded="false" signature="54169:58921" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="26" lean-forward="false" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-          <folding>
-            <marker date="1504280286588" expanded="true" signature="20:356" ph="{&quot;Core&quot;: ''...}" />
-            <marker date="1504280286588" expanded="true" signature="62:356" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.basic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5049">
-          <caret line="297" column="0" lean-forward="true" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#201#302#0" expanded="false" />
-            <element signature="e#361#8142#0" expanded="false" />
-            <element signature="e#8169#10138#0" expanded="false" />
-            <element signature="e#10163#11770#0" expanded="false" />
-            <element signature="e#11877#14515#0" expanded="false" />
-            <marker date="1504096300342" expanded="true" signature="566:1100" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="615:758" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="872:1074" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="8447:8460" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="9016:9530" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="476" column="16" lean-forward="false" selection-start-line="476" selection-start-column="16" selection-end-line="476" selection-end-column="16" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#953#1406#0" expanded="false" />
-            <element signature="e#1457#2053#0" expanded="false" />
-            <element signature="e#2101#5640#0" expanded="false" />
-            <element signature="e#5692#6208#0" expanded="false" />
-            <element signature="e#6274#8373#0" expanded="false" />
-            <element signature="e#8441#8749#0" expanded="false" />
-            <element signature="e#8763#8964#0" expanded="false" />
-            <element signature="e#9027#10908#0" expanded="false" />
-            <element signature="e#10973#13800#0" expanded="false" />
-            <element signature="e#13814#14000#0" expanded="false" />
-            <element signature="e#14082#14429#0" expanded="false" />
-            <element signature="e#14443#14618#0" expanded="false" />
-            <element signature="e#14701#15313#0" expanded="false" />
-            <element signature="e#15327#15502#0" expanded="false" />
-            <element signature="e#15563#15747#0" expanded="false" />
-            <element signature="e#15761#15940#0" expanded="false" />
-            <element signature="e#16007#16289#0" expanded="false" />
-            <element signature="e#16303#16575#0" expanded="false" />
-            <element signature="e#16684#17701#0" expanded="false" />
-            <element signature="e#17715#17830#0" expanded="false" />
-            <element signature="e#17882#19300#0" expanded="false" />
-            <element signature="e#19314#19437#0" expanded="false" />
-            <element signature="e#19481#20054#0" expanded="false" />
-            <element signature="e#20103#21110#0" expanded="false" />
-            <marker date="1504276673202" expanded="true" signature="220:21132" ph="{...}" />
-            <marker date="1504276673202" expanded="true" signature="242:21132" ph="{...}" />
-            <marker date="1504276673202" expanded="true" signature="266:21132" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lure.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7157">
@@ -484,29 +313,9 @@
             <element signature="e#19314#19437#0" expanded="false" />
             <element signature="e#19481#20054#0" expanded="false" />
             <element signature="e#20103#21110#0" expanded="false" />
-            <marker date="1504276673202" expanded="true" signature="220:21132" ph="{...}" />
-            <marker date="1504276673202" expanded="true" signature="242:21132" ph="{...}" />
-            <marker date="1504276673202" expanded="true" signature="266:21132" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lure.basic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="298" column="0" lean-forward="true" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#201#302#0" expanded="false" />
-            <element signature="e#361#8142#0" expanded="false" />
-            <element signature="e#8169#10138#0" expanded="false" />
-            <element signature="e#10163#11770#0" expanded="false" />
-            <element signature="e#11877#14515#0" expanded="false" />
-            <marker date="1504096300342" expanded="true" signature="566:1100" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="615:758" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="872:1074" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="8447:8460" ph="..." />
-            <marker date="1504096300342" expanded="true" signature="9016:9530" ph="..." />
+            <marker date="1504524526792" expanded="true" signature="220:37768" ph="{...}" />
+            <marker date="1504524526792" expanded="true" signature="242:37738" ph="{...}" />
+            <marker date="1504524526792" expanded="true" signature="37948:38027" ph="/** @returns {number} ...*/" />
           </folding>
         </state>
       </provider>
@@ -516,19 +325,376 @@
         <state relative-caret-position="612">
           <caret line="36" column="29" lean-forward="false" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
           <folding>
-            <marker date="1504280286588" expanded="true" signature="20:356" ph="{&quot;Core&quot;: ''...}" />
-            <marker date="1504280286588" expanded="true" signature="62:356" ph="{...}" />
+            <marker date="1504624797887" expanded="true" signature="3741:4835" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="3812:4012" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4092:4790" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4236:4743" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4329:4347" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4348:4616" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4438:4468" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="8098:8159" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="8825:9187" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="9006:9024" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="10143:10180" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="10378:10434" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="11869:11930" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="43987:44096" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60097:60527" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60376:60391" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60427:60445" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60795:61241" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61081:61096" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61132:61150" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61650:61694" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.basic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="298" column="0" lean-forward="true" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lure.content.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
+        <state relative-caret-position="16439">
           <caret line="1083" column="33" lean-forward="false" selection-start-line="1083" selection-start-column="33" selection-end-line="1083" selection-end-column="33" />
           <folding>
-            <marker date="1504011254168" expanded="false" signature="27307:32108" ph="{...}" />
-            <marker date="1504011254168" expanded="false" signature="54169:58921" ph="{...}" />
+            <element signature="e#1242#27367#0" expanded="false" />
+            <element signature="e#27382#32200#0" expanded="false" />
+            <element signature="e#32218#59019#0" expanded="false" />
+            <element signature="e#54244#59013#0" expanded="false" />
+            <element signature="e#59292#59393#0" expanded="false" />
+            <element signature="e#59452#67233#0" expanded="false" />
+            <element signature="e#67260#69229#0" expanded="false" />
+            <element signature="e#69254#70861#0" expanded="false" />
+            <element signature="e#70968#73606#0" expanded="false" />
+            <marker date="1504509426117" expanded="true" signature="59657:60191" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="59706:59849" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="59963:60165" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="67538:67551" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="68107:68621" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7157">
+          <caret line="421" column="44" lean-forward="false" selection-start-line="421" selection-start-column="44" selection-end-line="421" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8126">
+          <caret line="478" column="49" lean-forward="true" selection-start-line="478" selection-start-column="49" selection-end-line="478" selection-end-column="49" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#953#1406#0" expanded="false" />
+            <element signature="e#1457#2053#0" expanded="false" />
+            <element signature="e#2101#5640#0" expanded="false" />
+            <element signature="e#5692#6208#0" expanded="false" />
+            <element signature="e#6274#8373#0" expanded="false" />
+            <element signature="e#8441#8749#0" expanded="false" />
+            <element signature="e#8763#8964#0" expanded="false" />
+            <element signature="e#9027#10908#0" expanded="false" />
+            <element signature="e#10973#13800#0" expanded="false" />
+            <element signature="e#13814#14000#0" expanded="false" />
+            <element signature="e#14082#14429#0" expanded="false" />
+            <element signature="e#14443#14618#0" expanded="false" />
+            <element signature="e#14701#15313#0" expanded="false" />
+            <element signature="e#15327#15502#0" expanded="false" />
+            <element signature="e#15563#15747#0" expanded="false" />
+            <element signature="e#15761#15940#0" expanded="false" />
+            <element signature="e#16007#16289#0" expanded="false" />
+            <element signature="e#16303#16575#0" expanded="false" />
+            <element signature="e#16684#17701#0" expanded="false" />
+            <element signature="e#17715#17830#0" expanded="false" />
+            <element signature="e#17882#19300#0" expanded="false" />
+            <element signature="e#19314#19437#0" expanded="false" />
+            <element signature="e#19481#20054#0" expanded="false" />
+            <element signature="e#20103#21110#0" expanded="false" />
+            <marker date="1504524526792" expanded="true" signature="220:37768" ph="{...}" />
+            <marker date="1504524526792" expanded="true" signature="242:37738" ph="{...}" />
+            <marker date="1504524526792" expanded="true" signature="37948:38027" ph="/** @returns {number} ...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding>
+            <marker date="1504624797887" expanded="true" signature="3741:4835" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="3812:4012" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4092:4790" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4236:4743" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4329:4347" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4348:4616" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4438:4468" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="8098:8159" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="8825:9187" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="9006:9024" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="10143:10180" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="10378:10434" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="11869:11930" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="43987:44096" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60097:60527" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60376:60391" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60427:60445" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60795:61241" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61081:61096" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61132:61150" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61650:61694" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.basic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="298" column="0" lean-forward="true" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.content.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16439">
+          <caret line="1083" column="33" lean-forward="true" selection-start-line="1083" selection-start-column="33" selection-end-line="1083" selection-end-column="33" />
+          <folding>
+            <element signature="e#1242#27367#0" expanded="false" />
+            <element signature="e#27382#32200#0" expanded="false" />
+            <element signature="e#32218#59019#0" expanded="false" />
+            <element signature="e#54244#59013#0" expanded="false" />
+            <element signature="e#59292#59393#0" expanded="false" />
+            <element signature="e#59452#67233#0" expanded="false" />
+            <element signature="e#67260#69229#0" expanded="false" />
+            <element signature="e#69254#70861#0" expanded="false" />
+            <element signature="e#70968#73606#0" expanded="false" />
+            <marker date="1504509426117" expanded="true" signature="59657:60191" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="59706:59849" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="59963:60165" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="67538:67551" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="68107:68621" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7157">
+          <caret line="421" column="44" lean-forward="false" selection-start-line="421" selection-start-column="44" selection-end-line="421" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.content.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17935">
+          <caret line="1055" column="42" lean-forward="false" selection-start-line="1055" selection-start-column="36" selection-end-line="1055" selection-end-column="42" />
+          <folding>
+            <element signature="e#1242#27367#0" expanded="false" />
+            <element signature="e#27382#32200#0" expanded="false" />
+            <element signature="e#32218#59019#0" expanded="false" />
+            <element signature="e#54244#59013#0" expanded="false" />
+            <element signature="e#59292#59393#0" expanded="false" />
+            <element signature="e#59452#67233#0" expanded="false" />
+            <element signature="e#67260#69229#0" expanded="false" />
+            <element signature="e#69254#70861#0" expanded="false" />
+            <element signature="e#70968#73606#0" expanded="false" />
+            <marker date="1504509426117" expanded="true" signature="59657:60191" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="59706:59849" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="59963:60165" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="67538:67551" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="68107:68621" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="26" lean-forward="false" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+          <folding>
+            <marker date="1504624797887" expanded="true" signature="3741:4835" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="3812:4012" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4092:4790" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4236:4743" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4329:4347" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4348:4616" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4438:4468" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="8098:8159" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="8825:9187" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="9006:9024" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="10143:10180" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="10378:10434" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="11869:11930" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="43987:44096" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60097:60527" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60376:60391" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60427:60445" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60795:61241" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61081:61096" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61132:61150" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61650:61694" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.basic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5049">
+          <caret line="297" column="0" lean-forward="true" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="476" column="16" lean-forward="false" selection-start-line="476" selection-start-column="16" selection-end-line="476" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#953#1406#0" expanded="false" />
+            <element signature="e#1457#2053#0" expanded="false" />
+            <element signature="e#2101#5640#0" expanded="false" />
+            <element signature="e#5692#6208#0" expanded="false" />
+            <element signature="e#6274#8373#0" expanded="false" />
+            <element signature="e#8441#8749#0" expanded="false" />
+            <element signature="e#8763#8964#0" expanded="false" />
+            <element signature="e#9027#10908#0" expanded="false" />
+            <element signature="e#10973#13800#0" expanded="false" />
+            <element signature="e#13814#14000#0" expanded="false" />
+            <element signature="e#14082#14429#0" expanded="false" />
+            <element signature="e#14443#14618#0" expanded="false" />
+            <element signature="e#14701#15313#0" expanded="false" />
+            <element signature="e#15327#15502#0" expanded="false" />
+            <element signature="e#15563#15747#0" expanded="false" />
+            <element signature="e#15761#15940#0" expanded="false" />
+            <element signature="e#16007#16289#0" expanded="false" />
+            <element signature="e#16303#16575#0" expanded="false" />
+            <element signature="e#16684#17701#0" expanded="false" />
+            <element signature="e#17715#17830#0" expanded="false" />
+            <element signature="e#17882#19300#0" expanded="false" />
+            <element signature="e#19314#19437#0" expanded="false" />
+            <element signature="e#19481#20054#0" expanded="false" />
+            <element signature="e#20103#21110#0" expanded="false" />
+            <marker date="1504524526792" expanded="true" signature="220:37768" ph="{...}" />
+            <marker date="1504524526792" expanded="true" signature="242:37738" ph="{...}" />
+            <marker date="1504524526792" expanded="true" signature="37948:38027" ph="/** @returns {number} ...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.basic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.content.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="1260" column="0" lean-forward="true" selection-start-line="1260" selection-start-column="0" selection-end-line="1260" selection-end-column="0" />
+          <folding>
+            <element signature="e#1242#27367#0" expanded="false" />
+            <element signature="e#27382#32200#0" expanded="false" />
+            <element signature="e#32218#59019#0" expanded="false" />
+            <element signature="e#54244#59013#0" expanded="false" />
+            <element signature="e#59292#59393#0" expanded="false" />
+            <element signature="e#59452#67233#0" expanded="false" />
+            <element signature="e#67260#69229#0" expanded="false" />
+            <element signature="e#69254#70861#0" expanded="false" />
+            <element signature="e#70968#73606#0" expanded="false" />
+            <marker date="1504509426117" expanded="true" signature="59657:60191" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="59706:59849" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="59963:60165" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="67538:67551" ph="..." />
+            <marker date="1504509426117" expanded="true" signature="68107:68621" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="486" column="49" lean-forward="false" selection-start-line="486" selection-start-column="49" selection-end-line="486" selection-end-column="49" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#953#1406#0" expanded="false" />
+            <element signature="e#1457#2053#0" expanded="false" />
+            <element signature="e#2101#5640#0" expanded="false" />
+            <element signature="e#5692#6208#0" expanded="false" />
+            <element signature="e#6274#8373#0" expanded="false" />
+            <element signature="e#8441#8749#0" expanded="false" />
+            <element signature="e#8763#8964#0" expanded="false" />
+            <element signature="e#9027#10908#0" expanded="false" />
+            <element signature="e#10973#13800#0" expanded="false" />
+            <element signature="e#13814#14000#0" expanded="false" />
+            <element signature="e#14082#14429#0" expanded="false" />
+            <element signature="e#14443#14618#0" expanded="false" />
+            <element signature="e#14701#15313#0" expanded="false" />
+            <element signature="e#15327#15502#0" expanded="false" />
+            <element signature="e#15563#15747#0" expanded="false" />
+            <element signature="e#15761#15940#0" expanded="false" />
+            <element signature="e#16007#16289#0" expanded="false" />
+            <element signature="e#16303#16575#0" expanded="false" />
+            <element signature="e#16684#17701#0" expanded="false" />
+            <element signature="e#17715#17830#0" expanded="false" />
+            <element signature="e#17882#19300#0" expanded="false" />
+            <element signature="e#19314#19437#0" expanded="false" />
+            <element signature="e#19481#20054#0" expanded="false" />
+            <element signature="e#20103#21110#0" expanded="false" />
+            <marker date="1504524526792" expanded="true" signature="220:37768" ph="{...}" />
+            <marker date="1504524526792" expanded="true" signature="242:37738" ph="{...}" />
+            <marker date="1504524526792" expanded="true" signature="37948:38027" ph="/** @returns {number} ...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="421" column="44" lean-forward="false" selection-start-line="421" selection-start-column="44" selection-end-line="421" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lure.chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12451">
+          <caret line="1260" column="22" lean-forward="false" selection-start-line="1260" selection-start-column="22" selection-end-line="1260" selection-end-column="22" />
+          <folding>
+            <marker date="1504624797887" expanded="true" signature="3741:4835" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="3812:4012" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4092:4790" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4236:4743" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4329:4347" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4348:4616" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="4438:4468" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="8098:8159" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="8825:9187" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="9006:9024" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="10143:10180" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="10378:10434" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="11869:11930" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="43987:44096" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60097:60527" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60376:60391" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60427:60445" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="60795:61241" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61081:61096" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61132:61150" ph="..." />
+            <marker date="1504624797887" expanded="true" signature="61650:61694" ph="..." />
           </folding>
         </state>
       </provider>

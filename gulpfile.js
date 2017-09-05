@@ -78,7 +78,7 @@ gulp.task('all', function() {
     gulp.src([
 				srcPath+'lure.core.js',
 				srcPath+'lure.content.js',
-				srcPath+'lure.basic.js',
+				//srcPath+'lure.basic.js',
 				srcPath+'lure.chart.js',
         ])
 		.pipe(sourcemaps.init())

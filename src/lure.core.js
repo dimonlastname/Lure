@@ -802,6 +802,37 @@ return \``;
                 }, 500)
             }, 2000)
         }
+        /**
+         *
+         * @param number
+         * @param divider
+         * @returns {*}
+         * @constructor
+         */
+        RoundBy(number, divider){
+            let b = number % divider;
+            b && (number = number - b + divider);
+            return number
+        }
+
+        /**
+         *
+         * @param number
+         * @returns {number}
+         * @constructor
+         */
+        GetNumberOrder(number){
+            //debugger;
+            let b = number.toString().split('.');
+            if (parseInt(b[0]) !== 0){
+                b = b[0].length;
+                return b-1;
+            }else{
+                let p = b[1]?b[1].match(/[^0]/):null;
+                p = p? p.index+1:1;
+                return -p;
+            }
+        }
     }
     return new LureClass();
 })();
